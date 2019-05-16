@@ -1,7 +1,6 @@
-from pony.orm import Database,Required,Set
+from pony.orm import Required,Set
+from dbhelp import db
 import datetime
-
-db=Database()
 
 class Member(db.Entity):
     role=Required(str)
