@@ -4,7 +4,7 @@ Routes and views for the bottle application.
 
 from bottle import route, view
 from config import thisyear,webtitle
-
+from dbhelp import  *
 
 @route('/')
 @route('/home')
@@ -38,3 +38,45 @@ def about():
         appname=webtitle()
     )
 
+
+@route('/init')
+def init():
+    initdb()
+    tpl=" init db ok! <a href='/add'>addmember</a>"
+    return  tpl
+
+@route('/add')
+def add():
+    addmember()
+    tpl = " add member ok! <a href='/news'>addnews</a>"
+    return tpl
+
+@route('/news')
+def news():
+    addarticle()
+    tpl = " add article ok! <a href='/member'>show member </a>"
+    return tpl
+
+@route('/member')
+@view('member')
+def member():
+    ms= showmember()
+    return dict(
+        title='Member',
+        message='Member list.',
+        year=thisyear(),
+        appname=webtitle(),
+        member=ms
+    )
+
+@route('/article')
+@view('article')
+def article():
+    ac=showarticle()
+    return dict(
+        title='Article',
+        message='Your application description page.',
+        year=thisyear(),
+        appname=webtitle(),
+        article=ac
+    )
