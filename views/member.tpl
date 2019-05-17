@@ -5,6 +5,9 @@
 
 <p>Use this area to provide additional information.</p>
 
-<p>{{member}}</p>
-
-<a href="/article">show article</a>
+<p>{{role}}</p>
+<p>{{name}}</p>
+<p>{{nick}}</p>
+<p>{{password}}</p>
+<p>{{regdate}}</p>
+<p>{{active}}</p>

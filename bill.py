@@ -1,15 +1,12 @@
-from pony.orm import sql_debug,db_session,select
-
+from pony.orm import sql_debug,db_session
 from models import Member,Article,db
-
 from datetime import datetime
-
-
-#db=Database('sqlite',dbfile,create_db=True)
+from common import *
 
 today = datetime.now()
 
 def initdb():
+    db.bind('sqlite', ':memory:', create_db=True)
     sql_debug(True)
     db.generate_mapping(create_tables=True)
 
@@ -27,9 +24,9 @@ def addarticle():
 @db_session
 def showmember():
     member=Member[1]
-    return member.name
+    return props(member)
 
 @db_session
 def showarticle():
     article=Article[1]
-    return article.title
+    return props(article)

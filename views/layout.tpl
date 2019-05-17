@@ -26,6 +26,8 @@
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/init">InitDb</a></li>
+                    <li><a href="/member">member</a></li>
+                    <li><a href="/article">article</a></li>
 
                 </ul>
             </div>

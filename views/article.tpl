@@ -5,4 +5,7 @@
 
 <p>Use this area to provide additional information.</p>
 
-<p>{{article}}</p>
+<p>{{content}}</p>
+<p>{{publish}}</p>
+<p>{{update}}</p>
+<p>{{author}}</p>

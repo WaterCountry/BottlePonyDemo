@@ -1,7 +1,7 @@
 from pony.orm import Required,Set,Database
 import datetime
 
-db=Database('sqlite',':memory:',)
+db=Database()
 class Member(db.Entity):
     role=Required(str)
     name=Required(str)
@@ -17,3 +17,5 @@ class Article(db.Entity):
     publish=Required(bool)
     update=Required(datetime.date)
     author=Required(Member)
+
+

@@ -2,9 +2,9 @@
 Routes and views for the bottle application.
 """
 
-from bottle import route, view
+from bottle import route, view,redirect
 from config import thisyear,webtitle
-from dbhelp import  *
+from bill import  *
 
 @route('/')
 @route('/home')
@@ -42,41 +42,30 @@ def about():
 @route('/init')
 def init():
     initdb()
-    tpl=" init db ok! <a href='/add'>addmember</a>"
-    return  tpl
-
-@route('/add')
-def add():
     addmember()
-    tpl = " add member ok! <a href='/news'>addnews</a>"
-    return tpl
-
-@route('/news')
-def news():
     addarticle()
-    tpl = " add article ok! <a href='/member'>show member </a>"
-    return tpl
+    redirect('/')
 
 @route('/member')
 @view('member')
 def member():
     ms= showmember()
-    return dict(
-        title='Member',
-        message='Member list.',
-        year=thisyear(),
-        appname=webtitle(),
-        member=ms
-    )
+    based=basedict("member","成员信息")
+    ms.update(based)
+    return ms
 
 @route('/article')
 @view('article')
 def article():
     ac=showarticle()
+    based = basedict("article","文章显示")
+    ac.update(based)
+    return ac
+
+def basedict(t, msg):
     return dict(
-        title='Article',
-        message='Your application description page.',
+        title=t,
+        message=msg,
         year=thisyear(),
-        appname=webtitle(),
-        article=ac
+        appname=webtitle()
     )
