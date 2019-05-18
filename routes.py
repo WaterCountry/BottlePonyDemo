@@ -29,12 +29,6 @@ def about():
     return based
 
 
-@route('/init')
-def init():
-    addmember()
-    addarticle()
-    redirect('/')
-
 @route('/member')
 @view('member')
 def member():

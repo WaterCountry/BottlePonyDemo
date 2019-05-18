@@ -11,6 +11,7 @@ db.bind(provider='sqlite', filename=dbfile, create_db=True)
 sql_debug(True)
 db.generate_mapping(create_tables=True)
 
+
 @db_session
 def addmember():
     m1=Member(role='1',name='zhou',nick='fun',password='123',regdate=today,active=True)
@@ -36,5 +37,10 @@ def showarticle():
 
 @db_session
 def listarticle():
-    titles=select(a.title for a in Article )
-    return titles.fetch()
+    arts=select(a for a in Article )
+    return arts.fetch()
+
+'''
+addmember()
+addarticle()
+'''
