@@ -2,6 +2,7 @@ from datetime import datetime
 
 
 dbfile='demo.sqlite'
+faviconico='/static/images/book.gif'
 
 def thisyear():
     return datetime.now().year
@@ -14,5 +15,9 @@ def basedict(way, msg):
         way=way,
         message=msg,
         year=thisyear(),
-        appname=webtitle()
+        appname=webtitle(),
+        auth=True,
+        name='Test',
+        nick='nice',
+        avatar='/static/avatar/river.jpg'
     )

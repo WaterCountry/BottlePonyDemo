@@ -40,3 +40,22 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+.face-img{
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+}
+.navbar-img{
+    width: 30px;
+    height: 24px;
+}
+.nav{
+    font-size: 16pt;
+}
+.navbar-brand {
+    font-size: 18pt;
+}
+.navbar-brand a:hover {
+    font-size: 18pt;
+    color:gray;
+}

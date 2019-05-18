@@ -1,9 +1,27 @@
 """
 Routes and views for the bottle application.
 """
-from bottle import route, view,redirect
-from config import basedict
+from bottle import route, view
+from config import basedict,faviconico
 from bill import  *
+
+@route('/favicon.ico')
+def favicon():
+    return faviconico
+
+@route('/logout')
+@view('home')
+def logout():
+    based = basedict("Home", "首页")
+    based['auth']=False
+    return based
+
+@route('/login')
+@view('home')
+def login():
+    based = basedict("Home", "首页")
+    based['auth'] = True
+    return based
 
 @route('/')
 @route('/home')

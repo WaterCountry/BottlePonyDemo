@@ -18,7 +18,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">{{ appname }}</a>
+                <a href="/" class="navbar-brand">
+                <img src='/static/images/book.gif'" class="navbar-img" alt="book">
+                    {{ appname }}
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -30,6 +33,22 @@
                     <li><a href="/list">articlelist</a></li>
 
                 </ul>
+
+                %if auth:
+                    <ul class="nav navbar-nav navbar-right ">
+                        <li>
+                         <span class="navbar-brand">
+                        <img src='{{ avatar }}' class="face-img" alt=" ">
+                         {{ name }}，{{ nick }}
+                         <a href="/logout ">注销</a>
+                         </span>
+                    </ul>
+                %else:
+                <ul class="nav navbar-nav navbar-right ">
+                    <li><a href="/login ">登录</a></li>
+                </ul>
+                %end
+
             </div>
         </div>
     </div>
