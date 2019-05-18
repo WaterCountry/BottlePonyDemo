@@ -1,47 +1,36 @@
 """
 Routes and views for the bottle application.
 """
-
 from bottle import route, view,redirect
-from config import thisyear,webtitle
+from config import basedict
 from bill import  *
 
 @route('/')
 @route('/home')
-@view('index')
+@view('home')
 def home():
     """Renders the home page."""
-    return dict(
-        year=thisyear(),
-        appname=webtitle()
-    )
+    based = basedict("Home", "首页")
+    return based
 
 @route('/contact')
 @view('contact')
 def contact():
     """Renders the contact page."""
-    return dict(
-        title='Contact',
-        message='Your contact page.',
-        year=thisyear(),
-        appname=webtitle()
-    )
+
+    based = basedict("Contact", "联系")
+    return based
 
 @route('/about')
 @view('about')
 def about():
     """Renders the about page."""
-    return dict(
-        title='About',
-        message='Your application description page.',
-        year=thisyear(),
-        appname=webtitle()
-    )
+    based = basedict("About", "关于")
+    return based
 
 
 @route('/init')
 def init():
-    initdb()
     addmember()
     addarticle()
     redirect('/')
@@ -62,10 +51,11 @@ def article():
     ac.update(based)
     return ac
 
-def basedict(t, msg):
-    return dict(
-        title=t,
-        message=msg,
-        year=thisyear(),
-        appname=webtitle()
-    )
+@route('/list')
+@view('list')
+def listtitle():
+    arts=listarticle()
+    d1={ 'arts': arts }
+    based = basedict("articlelist","文章列表")
+    d1.update(based)
+    return  d1

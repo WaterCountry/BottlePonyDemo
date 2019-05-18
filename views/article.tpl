@@ -1,11 +1,11 @@
-% rebase('layout.tpl', title=title, year=year)
+% rebase('layout.tpl', way=way, year=year)
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
+<h1>{{ title }}.</h1>
+<h2>{{ message }}</h2>
 
 <p>Use this area to provide additional information.</p>
 
-<p>{{content}}</p>
+<h2>{{content}}</h2>
 <p>{{publish}}</p>
 <p>{{update}}</p>
 <p>{{author}}</p>

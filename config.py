@@ -9,4 +9,10 @@ def thisyear():
 def webtitle():
     return "Bottle Pony Demo"
 
-
+def basedict(way, msg):
+    return dict(
+        way=way,
+        message=msg,
+        year=thisyear(),
+        appname=webtitle()
+    )
