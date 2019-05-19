@@ -43,12 +43,11 @@ def home():
     return based
 
 @route('/contact')
-@view('contact')
 def contact():
     """Renders the contact page."""
     based = basedict("Contact", "联系")
     if based['auth']:
-        return based
+        return template('contact',based)
     else:
         based['message']='登录后可见!'
         return template('note',based)
