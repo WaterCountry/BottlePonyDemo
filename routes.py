@@ -1,7 +1,7 @@
 """
 Routes and views for the bottle application.
 """
-from bottle import route, view,request,template
+from bottle import route, view,request,template,redirect
 from config import basedict,faviconico
 from bill import  *
 
@@ -24,14 +24,18 @@ def login():
     based = basedict("Home", "首页")
     return based
 
-@route('/login',method='POST')
+@route('/login',method='GET')
 @view('login')
 def login():
-    s=request.environ.get('beaker.session')
-    s['user']="wt"
-    s.save()
+    username=request.query.username
+    password=request.query.password
+    if username.strip() and password.strip():
+        if check_login(username,password):
+            s=request.environ.get('beaker.session')
+            s['user']=username
+            s.save()
+            redirect('/')
     based = basedict("Home", "首页")
-
     return based
 
 @route('/')

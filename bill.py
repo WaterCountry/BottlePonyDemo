@@ -13,6 +13,10 @@ db.generate_mapping(create_tables=True)
 
 
 @db_session
+def check_login(username,password):
+    return select(m for m in Member if m.name==username and m.password==password).exists()
+
+@db_session
 def addmember():
     m1=Member(role='1',name='zhou',nick='fun',password='123',regdate=today,active=True)
     m2=Member(role='1',name='xiao',nick='live',password='123',regdate=today,active=True)

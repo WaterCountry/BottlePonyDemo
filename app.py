@@ -47,4 +47,4 @@ if __name__ == '__main__':
         return bottle.static_file(filepath, root=STATIC_ROOT)
 
     # Starts a local test server.
-    bottle.run(app=app,server='wsgiref', host=HOST, port=PORT)
+    bottle.run(app=app,server='wsgiref', host=HOST, port=PORT,debug=True)

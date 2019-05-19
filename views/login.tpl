@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12">
         <section id="loginForm">
-            <form action="/login" method="post" class="form-horizontal">
+            <form action="/login" method="GET" class="form-horizontal">
                 <h4>请使用本地账号登录</h4>
                 <hr />
                 <div>

@@ -12,10 +12,14 @@ def webtitle():
     return "Bottle Pony Demo"
 
 def basedict(way, msg):
+    name='Test'
     authed=False
     s=request.environ.get('beaker.session')
-    if s.get('user'):
+    loginuser=s.get('user')
+
+    if loginuser:
        authed=True
+       name=loginuser
 
     return dict(
         way=way,
@@ -23,7 +27,7 @@ def basedict(way, msg):
         year=thisyear(),
         appname=webtitle(),
         auth=authed,
-        name='Test',
+        name=name,
         nick='nice',
         avatar='/static/avatar/river.jpg'
     )
