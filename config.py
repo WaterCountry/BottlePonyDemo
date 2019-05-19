@@ -9,7 +9,7 @@ def thisyear():
     return datetime.now().year
 
 def webtitle():
-    return "Bottle Pony Demo"
+    return "Bottle Pony"
 
 def basedict(way, msg):
     name='Test'

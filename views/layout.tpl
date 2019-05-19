@@ -39,7 +39,7 @@
                         <li>
                          <span class="navbar-brand">
                         <img src='{{ avatar }}' class="face-img" alt=" ">
-                         {{ name }}，{{ nick }}
+                         {{ nick }}
                          <a href="/logout ">注销</a>
                          </span>
                     </ul>

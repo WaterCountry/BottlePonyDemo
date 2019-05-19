@@ -24,11 +24,14 @@ def login():
     based = basedict("Home", "首页")
     return based
 
-@route('/login',method='GET')
+@route('/login',method='POST')
 @view('login')
 def login():
-    username=request.query.username
-    password=request.query.password
+    #username=request.query.username
+    #password=request.query.password
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+
     if username.strip() and password.strip():
         if check_login(username,password):
             s=request.environ.get('beaker.session')
