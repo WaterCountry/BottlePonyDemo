@@ -1,7 +1,7 @@
 """
 Routes and views for the bottle application.
 """
-from bottle import route, view
+from bottle import route, view,request,template
 from config import basedict,faviconico
 from bill import  *
 
@@ -12,15 +12,26 @@ def favicon():
 @route('/logout')
 @view('home')
 def logout():
+    s=request.environ.get('beaker.session')
+    s['user']=None
+    s.save()
     based = basedict("Home", "首页")
-    based['auth']=False
     return based
 
 @route('/login')
-@view('home')
+@view('login')
 def login():
     based = basedict("Home", "首页")
-    based['auth'] = True
+    return based
+
+@route('/login',method='POST')
+@view('login')
+def login():
+    s=request.environ.get('beaker.session')
+    s['user']="wt"
+    s.save()
+    based = basedict("Home", "首页")
+
     return based
 
 @route('/')
@@ -35,9 +46,12 @@ def home():
 @view('contact')
 def contact():
     """Renders the contact page."""
-
     based = basedict("Contact", "联系")
-    return based
+    if based['auth']:
+        return based
+    else:
+        based['message']='登录后可见!'
+        return template('note',based)
 
 @route('/about')
 @view('about')
