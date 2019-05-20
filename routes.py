@@ -5,9 +5,32 @@ from bottle import route, view,request,template,redirect
 from config import basedict,faviconico
 from bill import  *
 
-@route('/favicon.ico')
-def favicon():
-    return faviconico
+
+
+@route('/register')
+@view('register')
+def register():
+    based = basedict("Home", "首页")
+    return based
+
+@route('/register',method='POST')
+@view('register')
+def register():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    nick = request.forms.get('nick')
+
+    if username.strip() and password.strip():
+        if registermember(username, password,nick):
+            s = request.environ.get('beaker.session')
+            s['user'] = username
+            s['nick'] = nick
+            s.save()
+            redirect('/')
+        else:
+            return "用户名已经存在！"
+    based = basedict("Home", "首页")
+    return based
 
 @route('/logout')
 @view('home')
@@ -33,9 +56,11 @@ def login():
     password = request.forms.get('password')
 
     if username.strip() and password.strip():
-        if check_login(username,password):
+        nick=check_login(username,password)
+        if nick:
             s=request.environ.get('beaker.session')
             s['user']=username
+            s['nick'] = nick
             s.save()
             redirect('/')
     based = basedict("Home", "首页")
@@ -91,3 +116,7 @@ def listtitle():
     based = basedict("articlelist","文章列表")
     d1.update(based)
     return  d1
+
+@route('/favicon.ico')
+def favicon():
+    return faviconico

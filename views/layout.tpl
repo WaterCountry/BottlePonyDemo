@@ -19,7 +19,6 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="/" class="navbar-brand">
-                <img src='/static/images/book.gif'" class="navbar-img" alt="book">
                     {{ appname }}
                 </a>
             </div>

@@ -16,6 +16,7 @@ def basedict(way, msg):
     authed=False
     s=request.environ.get('beaker.session')
     loginuser=s.get('user')
+    loginnick = s.get('nick')
 
     if loginuser:
        authed=True
@@ -28,6 +29,6 @@ def basedict(way, msg):
         appname=webtitle(),
         auth=authed,
         name=name,
-        nick='nice',
+        nick=loginnick,
         avatar='/static/avatar/river.jpg'
     )

@@ -11,10 +11,14 @@ db.bind(provider='sqlite', filename=dbfile, create_db=True)
 sql_debug(True)
 db.generate_mapping(create_tables=True)
 
+@db_session
+def registermember(username,password,nick):
+    madd=Member(role='1',name=username,nick=nick,password=password,regdate=today,active=True)
+    return madd.active
 
 @db_session
 def check_login(username,password):
-    return select(m for m in Member if m.name==username and m.password==password).exists()
+    return select(m.nick for m in Member if m.name==username and m.password==password).first()
 
 @db_session
 def addmember():

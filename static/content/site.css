@@ -45,18 +45,20 @@ input[type="checkbox"].input-validation-error {
     width: 24px;
     height: 24px;
     border-radius: 6px;
+    float:left;
 }
 .navbar-img{
     width: 30px;
     height: 24px;
 }
 .nav{
-    font-size: 16pt;
+    font-size: 14pt;
 }
 .navbar-brand {
-    font-size: 18pt;
+    font-size: 14pt;
 }
 .navbar-brand a:hover {
     font-size: 18pt;
     color:gray;
 }
+
