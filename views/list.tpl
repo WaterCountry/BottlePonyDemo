@@ -5,12 +5,9 @@
 
 <p>Use this area to provide additional information.</p>
 
+<div class="container">
 
-<ul>
-    % for title in arts:
-      <li>{{ title }}</li>
-    % end
-</ul>
+<div class="row">
 
 <table class="table table-striped">
     <thead>
@@ -26,7 +23,7 @@
         % for t in arts:
         <tr>
             <td>{{t.id}}</td>
-            <td>{{t.title}}</td>
+            <td><a href='/article/{{ t.id }}'>{{t.title}}</a> </td>
             <td>{{t.publish}}</td>
             <td>{{t.update}}</td>
             <td>{{t.author}}</td>
@@ -34,3 +31,27 @@
         % end
     </tbody>
 </table>
+</div>
+
+<div class="row">
+    <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <li>
+                  <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                  %for i in range(5):
+                    <li><a href="#">{{ i }}</a></li>
+                  %end
+
+                <li>
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+</div>
+
+</div>

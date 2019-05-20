@@ -39,8 +39,10 @@ def showmember():
     return m1.to_dict()
 
 @db_session
-def showarticle():
-    a1=Article[1]
+def showarticle(id):
+
+    a1=Article[id]
+
     return a1.to_dict()
 
 @db_session

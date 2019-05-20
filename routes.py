@@ -100,15 +100,19 @@ def member():
     ms.update(based)
     return ms
 
-@route('/article')
-@view('article')
-def article():
-    ac=showarticle()
-    based = basedict("article","文章显示")
-    ac.update(based)
-    return ac
 
-@route('/list')
+@route('/article/<id>')
+@view('article')
+def article(id):
+    based = basedict("article", "文章显示")
+    if id:
+        ac=showarticle(id)
+        ac.update(based)
+        return ac
+    else:
+        return based
+
+@route('/article')
 @view('list')
 def listtitle():
     arts=listarticle()

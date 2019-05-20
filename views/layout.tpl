@@ -29,7 +29,6 @@
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/member">member</a></li>
                     <li><a href="/article">article</a></li>
-                    <li><a href="/list">articlelist</a></li>
 
                 </ul>
 
