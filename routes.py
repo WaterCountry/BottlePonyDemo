@@ -4,7 +4,7 @@ Routes and views for the bottle application.
 from bottle import route, view,request,template,redirect
 from config import basedict,faviconico
 from bill import  *
-
+from pony.orm import *
 
 
 @route('/register')
@@ -16,9 +16,9 @@ def register():
 @route('/register',method='POST')
 @view('register')
 def register():
-    username = request.forms.get('username')
-    password = request.forms.get('password')
-    nick = request.forms.get('nick')
+    username = request.forms.username
+    password = request.forms.password
+    nick = request.forms.nick
 
     if username.strip() and password.strip():
         if registermember(username, password,nick):
@@ -52,8 +52,8 @@ def login():
 def login():
     #username=request.query.username
     #password=request.query.password
-    username = request.forms.get('username')
-    password = request.forms.get('password')
+    username = request.forms.username
+    password = request.forms.password
 
     if username.strip() and password.strip():
         nick=check_login(username,password)
@@ -105,12 +105,13 @@ def member():
 @view('article')
 def article(id):
     based = basedict("article", "文章显示")
-    if id:
+    isint: bool=isinstance(id,int)
+    if not isint:
         ac=showarticle(id)
         ac.update(based)
         return ac
     else:
-        return based
+        return template('note',based)
 
 @route('/article')
 @view('list')
@@ -124,3 +125,20 @@ def listtitle():
 @route('/favicon.ico')
 def favicon():
     return faviconico
+
+
+@route('/add',method='POST')
+@view('add')
+def add():
+    title = request.forms.title
+    content = request.forms.content
+    ac= addarticle(title,content)
+    aid=ac.id
+    return template('title id ={{ msg }}',msg=aid)
+
+
+@route('/add')
+@view('add')
+def add():
+    based = basedict("Home", "首页")
+    return based

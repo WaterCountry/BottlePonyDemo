@@ -27,11 +27,11 @@ def addmember():
     return m1.nick+m2.nick
 
 @db_session
-def addarticle():
+def addarticle(title,content):
     member_id=1
-    a1=Article(title='Every day',content='Meet a better self every day ! ',publish=True,update=today,author=member_id)
-    a2=Article(title='Good luck!',content='Every one has a good luck ! ',publish=True,update=today,author=member_id)
-    return a1.title+a2.title
+    ac=Article(title=title,content=content,publish=True,update=today,author=Member[member_id])
+
+    return ac
 
 @db_session
 def showmember():
@@ -42,14 +42,21 @@ def showmember():
 def showarticle(id):
 
     a1=Article[id]
+    dd=a1.to_dict()
+    dd['author']=a1.author.nick
 
-    return a1.to_dict()
+    return dd
 
 @db_session
 def listarticle():
     arts=select(a for a in Article )
     return arts.fetch()
 
+
+@db_session
+def pagearticle(page,pagesize):
+    arts=select(a for a in Article).page(page,pagesize)
+    return arts.fetch()
 '''
 addmember()
 addarticle()

@@ -6,7 +6,11 @@
 <p>Use this area to provide additional information.</p>
 
 <div class="container">
-
+    <div class="row">
+        <div class="">
+            <a href="/add">添加文章</a>
+        </div>
+    </div>
 <div class="row">
 
 <table class="table table-striped">

@@ -18,4 +18,7 @@ class Article(db.Entity):
     update=Required(datetime.date)
     author=Required(Member)
 
+    def after_update(self):
+        print("after update! id=%d" % self.id)
+
 
