@@ -36,8 +36,8 @@ def register():
 @view('home')
 def logout():
     s=request.environ.get('beaker.session')
-    s['user']=None
-    s.save()
+    s.delete()
+
     based = basedict("Home", "首页")
     return based
 
@@ -56,11 +56,12 @@ def login():
     password = request.forms.password
 
     if username.strip() and password.strip():
-        nick=check_login(username,password)
-        if nick:
+        mb=check_login(username,password)
+        if mb:
             s=request.environ.get('beaker.session')
-            s['user']=username
-            s['nick'] = nick
+            s['user']=mb.name
+            s['nick'] =mb.nick
+            s['id']=mb.id
             s.save()
             redirect('/')
     based = basedict("Home", "首页")
@@ -97,8 +98,10 @@ def about():
 def member():
     ms= showmember()
     based=basedict("member","成员信息")
-    ms.update(based)
-    return ms
+
+    dd={'member':ms}
+    dd.update(based)
+    return dd
 
 
 @route('/article/<id>')

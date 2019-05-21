@@ -1,6 +1,7 @@
 from pony.orm import *
 from models import Member,Article,db
 from datetime import datetime
+from bottle import request
 #import  os
 
 dbfile="demo.sqlite"
@@ -18,7 +19,8 @@ def registermember(username,password,nick):
 
 @db_session
 def check_login(username,password):
-    return select(m.nick for m in Member if m.name==username and m.password==password).first()
+    mb= select(m for m in Member if m.name==username and m.password==password).first()
+    return mb
 
 @db_session
 def addmember():
@@ -35,8 +37,13 @@ def addarticle(title,content):
 
 @db_session
 def showmember():
-    m1=Member[1]
-    return m1.to_dict()
+    s=request.environ.get('beaker.session')
+    id = s.get('id')
+    if id:
+        m1=Member[id]
+        return m1
+    else:
+        return None
 
 @db_session
 def showarticle(id):

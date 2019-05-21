@@ -4,10 +4,11 @@
 <h3>{{ message }}</h3>
 
 <p>Use this area to provide additional information.</p>
-
-<p>{{role}}</p>
-<p>{{name}}</p>
-<p>{{nick}}</p>
-<p>{{password}}</p>
-<p>{{regdate}}</p>
-<p>{{active}}</p>
+%if member:
+<p>{{member.role}}</p>
+<p>{{member.name}}</p>
+<p>{{member.nick}}</p>
+<p>{{member.password}}</p>
+<p>{{member.regdate}}</p>
+<p>{{member.active}}</p>
+%end
