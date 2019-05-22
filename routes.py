@@ -118,12 +118,15 @@ def article(aid):
 @db_session
 def listtitle():
     page=request.query.page or '1'
-    plimit=3
+    plimit=5
     arts=select(a for a in Article )
     artscount=arts.count()
-    pnum= int( artscount/plimit+2)
+    pnum= int( artscount/plimit)
+    if artscount>pnum*plimit:
+        pnum=pnum+1
+
     arts=arts.page(int(page),plimit)
-    return template('list', arts=arts,pagecount=pnum, auth=False)
+    return template('list', arts=arts,pagecount=pnum,page=page, auth=False)
 
 
 @route('/favicon.ico')

@@ -43,8 +43,15 @@
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                  %for i in range(1,pagecount):
-                    <li><a href="/article?page={{ i }}">{{ i }}</a></li>
+                  %for i in range(1,pagecount+1):
+                    <li class=
+                        %if page==i :
+                            "active"
+                        %else:
+                            "disable"
+                        %end
+                        >
+                    <a href="/article?page={{ i }}">{{ i }}</a></li>
                   %end
 
                 <li>
