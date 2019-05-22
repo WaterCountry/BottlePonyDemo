@@ -1,10 +1,10 @@
 """
 Routes and views for the bottle application.
 """
-from bottle import route, view,request,template,redirect
+from bottle import route, view,template,redirect
 from config import basedict,faviconico
 from bill import  *
-from pony.orm import *
+from pony.orm import db_session
 
 
 @route('/register')
@@ -104,26 +104,27 @@ def member():
     return dd
 
 
-@route('/article/<id>')
+@route('/article/<aid>')
 @view('article')
-def article(id):
+def article(aid):
+    ac=showarticle(aid)
     based = basedict("article", "文章显示")
-    isint: bool=isinstance(id,int)
-    if not isint:
-        ac=showarticle(id)
-        ac.update(based)
-        return ac
-    else:
-        return template('note',based)
+
+    dd={'article':ac}
+    dd.update(based)
+    return dd
 
 @route('/article')
-@view('list')
+@db_session
 def listtitle():
-    arts=listarticle()
-    d1={ 'arts': arts }
-    based = basedict("articlelist","文章列表")
-    d1.update(based)
-    return  d1
+    page=request.query.page or '1'
+    plimit=3
+    arts=select(a for a in Article )
+    artscount=arts.count()
+    pnum= int( artscount/plimit+2)
+    arts=arts.page(int(page),plimit)
+    return template('list', arts=arts,pagecount=pnum, auth=False)
+
 
 @route('/favicon.ico')
 def favicon():

@@ -38,31 +38,27 @@ def addarticle(title,content):
 @db_session
 def showmember():
     s=request.environ.get('beaker.session')
-    id = s.get('id')
-    if id:
-        m1=Member[id]
+    mid = s.get('id')
+    if mid:
+        m1=Member[mid]
         return m1
     else:
         return None
 
 @db_session
-def showarticle(id):
-
-    a1=Article[id]
-    dd=a1.to_dict()
-    dd['author']=a1.author.nick
-
-    return dd
+def showarticle(aid):
+    a1=Article[aid]
+    return a1
 
 @db_session
 def listarticle():
     arts=select(a for a in Article )
-    return arts.fetch()
+    return arts
 
 
 @db_session
-def pagearticle(page,pagesize):
-    arts=select(a for a in Article).page(page,pagesize)
+def pagearticle(pnum,psize):
+    arts=select(a for a in Article).page(pnum,pagesize=psize)
     return arts.fetch()
 '''
 addmember()

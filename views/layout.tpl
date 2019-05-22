@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ way }} - {{ appname }}</title>
+    <title>way  -  appname</title>
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="/" class="navbar-brand">
-                    {{ appname }}
+                   appname
                 </a>
             </div>
             <div class="navbar-collapse collapse">
@@ -55,7 +55,7 @@
         {{!base}}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - {{ appname }}</p>
+            <p>&copy; year -  appname</p>
         </footer>
     </div>
 

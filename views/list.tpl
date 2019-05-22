@@ -1,7 +1,5 @@
-% rebase('layout.tpl', way=way, year=year)
+% rebase('layout.tpl')
 
-<h2>{{ way }}.</h2>
-<h3>{{ message }}</h3>
 
 <p>Use this area to provide additional information.</p>
 
@@ -30,7 +28,7 @@
             <td><a href='/article/{{ t.id }}'>{{t.title}}</a> </td>
             <td>{{t.publish}}</td>
             <td>{{t.update}}</td>
-            <td>{{t.author}}</td>
+            <td>{{t.author.nick}}</td>
         </tr>
         % end
     </tbody>
@@ -45,8 +43,8 @@
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                  %for i in range(5):
-                    <li><a href="#">{{ i }}</a></li>
+                  %for i in range(1,pagecount):
+                    <li><a href="/article?page={{ i }}">{{ i }}</a></li>
                   %end
 
                 <li>
