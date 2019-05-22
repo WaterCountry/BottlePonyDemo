@@ -45,7 +45,7 @@
                 </li>
                   %for i in range(1,pagecount+1):
                     <li class=
-                        %if page==i :
+                        %if i==cpage:
                             "active"
                         %else:
                             "disable"

@@ -5,7 +5,7 @@ from bottle import route, view,template,redirect
 from config import basedict,faviconico
 from bill import  *
 from pony.orm import db_session
-
+import html
 
 @route('/register')
 @view('register')
@@ -126,7 +126,7 @@ def listtitle():
         pnum=pnum+1
 
     arts=arts.page(int(page),plimit)
-    return template('list', arts=arts,pagecount=pnum,page=page, auth=False)
+    return template('list', arts=arts,pagecount=pnum,cpage=int(page), auth=False)
 
 
 @route('/favicon.ico')
@@ -135,13 +135,15 @@ def favicon():
 
 
 @route('/add',method='POST')
-@view('add')
 def add():
     title = request.forms.title
     content = request.forms.content
-    ac= addarticle(title,content)
-    aid=ac.id
-    return template('title id ={{ msg }}',msg=aid)
+    if title.strip() and content.strip():
+        content=html.unescape(content)
+        ac= addarticle(title,content)
+        aid=ac.id
+        url='/article/'+str(aid)
+        redirect(url)
 
 
 @route('/add')
